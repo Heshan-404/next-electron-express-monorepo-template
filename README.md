@@ -33,7 +33,7 @@ Follow these steps to get your development environment up and running quickly.
 First, clone this template to your local machine:
 
 ```bash
-git clone https://github.com/YourUsername/next-electron-express-monorepo-template.git
+git clone https://github.com/Heshan-404/next-electron-express-monorepo-template.git
 cd next-electron-express-monorepo-template
 ```
 
