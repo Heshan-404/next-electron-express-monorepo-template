@@ -1,6 +1,8 @@
 
 # next-electron-express-monorepo-template
 
+![image](https://github.com/user-attachments/assets/ba0343d5-5d82-403e-abf5-b802c351cd08)
+
 A robust and highly-optimized boilerplate for building cross-platform desktop applications with **Electron.js**, a **Next.js** frontend, and a bundled **Express.js** backend, all structured within a **monorepo**. Experience seamless development with hot-reloading across your entire stack!
 
 ## ✨ Features
