@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  // Inherit most settings from your dev config
+  "compilerOptions": {
+    "module": "commonjs",
+    // <--- CRUCIAL: Output CommonJS for pkg
+    "outDir": "./dist-pkg",
+    // <--- New output directory for pkg build
+    "declaration": false,
+    // Don't generate .d.ts files for this pkg build
+    "sourceMap": false,
+    "target": "es2020"
+  }
+}

@@ -1,0 +1,10 @@
+/* src/styles/theme.css */
+:root {
+  --primary-color: #007bff; /* Bootstrap blue */
+  --secondary-color: #6c757d; /* Bootstrap secondary grey */
+  --success-color: #28a745; /* Bootstrap success green */
+  --danger-color: #dc3545; /* Bootstrap danger red */
+  --text-color: #212529; /* Bootstrap default text */
+  --light-background: #f8f9fa;
+  --dark-background: #343a40;
+}

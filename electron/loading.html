@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loading ...</title>
+    <style>
+      /* General Reset and Body Styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Fills the 500px window height */
+        width: 100vw;  /* Fills the 500px window width */
+        background-color: transparent; /* Electron window background */
+        color: #333;
+        overflow: hidden;
+        -webkit-app-region: drag;
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Container for content and styling */
+      .container {
+        width: 480px;  /* Fixed width of the inner content area (slightly less than window) */
+        height: 480px; /* Fixed height of the inner content area (slightly less than window) */
+        box-sizing: border-box; /* Padding is included in width/height */
+        background-color: #f4f2ee; /* Matches your desired loading screen background */
+        border-radius: 10px;
+        padding: 30px 20px; /* Adjusted padding to ensure content fits within 480x480 */
+        text-align: center;
+        -webkit-app-region: no-drag;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically within the container */
+        align-items: center;     /* Center content horizontally within the container */
+        opacity: 0;
+        animation: contentFadeIn 1s forwards 0.5s;
+      }
+
+      @keyframes contentFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Logo Styling */
+      .logo {
+        width: 100px;
+        height: auto;
+        margin-bottom: 15px;
+      }
+
+      /* Header Styling */
+      .header-text {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 2em;
+        letter-spacing: 1px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 2px solid #0a66c2;
+        padding-bottom: 5px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      /* Loading Bar Styles */
+      .loading-bar {
+        width: 130px;
+        height: 5px;
+        margin: 0 auto;
+        border-radius: 2px;
+        background-color: #d4d4d4;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transform: rotateY(0);
+        transition: transform 0.3s ease-in;
+      }
+
+      .blue-bar {
+        height: 100%;
+        width: 68px;
+        position: absolute;
+        transform: translate(-34px);
+        background-color: #0a66c2;
+        border-radius: 2px;
+        animation: initial-loading 1.5s ease infinite;
+      }
+
+      @keyframes initial-loading {
+        0% {
+          transform: translate(-34px);
+        }
+        50% {
+          transform: translate(96px);
+        }
+        to {
+          transform: translate(-34px);
+        }
+      }
+
+      #loading-message {
+        font-size: 0.95em;
+        color: #555;
+        margin-top: 20px;
+        min-height: 20px;
+      }
+
+      .error {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="./icon.ico" alt="logo" class="logo" />
+      <h1 class="header-text">Title</h1>
+      <div class="loading-bar">
+        <div class="blue-bar"></div>
+      </div>
+      <p id="loading-message"></p>
+    </div>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+      const loadingMessageElem = document.getElementById("loading-message");
+
+      let dotCount = 0;
+      const ellipsisInterval = setInterval(() => {
+        dotCount = (dotCount + 1) % 4;
+        loadingMessageElem.textContent = "Loading" + ".".repeat(dotCount + 1);
+      }, 400);
+
+      ipcRenderer.on("loading-message", (event, message) => {
+        clearInterval(ellipsisInterval);
+        loadingMessageElem.textContent = message;
+        loadingMessageElem.classList.remove("error");
+      });
+
+      ipcRenderer.on("loading-error", (event, message) => {
+        clearInterval(ellipsisInterval);
+        loadingMessageElem.textContent = message;
+        loadingMessageElem.classList.add("error");
+      });
+
+      window.addEventListener("beforeunload", () => {
+        clearInterval(ellipsisInterval);
+      });
+    </script>
+  </body>
+</html>

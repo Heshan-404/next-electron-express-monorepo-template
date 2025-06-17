@@ -1,0 +1,49 @@
+/* src/styles/userManagement.module.css */
+.pageTitle {
+  color: #17a2b8; /* Info blue */
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.formContainer {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
+}
+
+.sectionHeader {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #495057;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+
+/* Applied to error messages in AddUserForm */
+.errorMessage {
+  color: #721c24; /* Dark red from Bootstrap's danger text */
+  background-color: #f8d7da; /* Light red from Bootstrap's danger background */
+  border: 1px solid #f5c6cb; /* Light red border */
+  padding: 0.75rem 1.25rem; /* Bootstrap alert padding */
+  border-radius: 0.25rem; /* Bootstrap alert border-radius */
+  margin-bottom: 1rem; /* Spacing below */
+  font-size: 0.9em;
+}
+
+/* Applied via className to common/Input in AddUserForm */
+.formInput {
+  /* Overrides or extends common/Input's inline styles if needed, */
+  /* but Input.tsx already has width: 100% logic (calc) */
+  margin-bottom: 15px; /* More consistent spacing */
+}
+
+/* Applied via className to common/Button in AddUserForm */
+.formButton {
+  width: 100%; /* Make button full width in its container */
+  margin-top: 5px; /* A little space above the button */
+}

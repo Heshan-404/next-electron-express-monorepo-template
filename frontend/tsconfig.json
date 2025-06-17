@@ -1,0 +1,47 @@
+// frontend/tsconfig.json
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    // Consider setting this to 'true' over time for better type safety
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    // Keep "node" for broader compatibility, or "bundler" if using Next.js 13+
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    // --- ADD THESE LINES FOR PATH ALIASES ---
+    "baseUrl": ".",
+    // This tells TypeScript that paths in "paths" are relative to this directory (frontend/)
+    "paths": {
+      // This maps "@backend-types/*" to the actual location of Prisma's generated types
+      // "../" goes up one level to the monorepo root.
+      // Then navigate down to the backend's generated Prisma client.
+      "@backend-types": [
+        "../backend/prisma/generated"
+      ]
+      // If you have other aliases (e.g., for components within your frontend), add them here too:
+      // "@components/*": ["./src/components/*"]
+    }
+    // --- END ADDITIONS ---
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+    // Consider adding this if you have Next.js App Router or other generated types
+    // ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

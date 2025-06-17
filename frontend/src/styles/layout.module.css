@@ -1,0 +1,14 @@
+/* src/styles/layout.module.css */
+.appContainer {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5; /* Slightly different background for the entire app if body doesn't cover it */
+}
+
+.mainContent {
+  flex-grow: 1;
+  padding: 25px;
+  background-color: #ffffff;
+  overflow-y: auto; /* Allow content to scroll if it exceeds viewport */
+}

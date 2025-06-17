@@ -1,0 +1,59 @@
+/* table.module.css */
+
+.customTable {
+  width: 100%;
+  border-collapse: collapse;
+  /* Crucial for resizing: ensures columns adhere to specified widths */
+  table-layout: fixed;
+}
+
+.customTable caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.customTable th,
+.customTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  /* Allow content to be hidden if column shrinks too much */
+  overflow: hidden;
+  white-space: nowrap; /* Prevent text wrapping inside cells during resize */
+}
+
+.customTable th {
+  background-color: #f2f2f2;
+  position: relative; /* Needed for positioning the resize handle */
+}
+
+/* Styles for the resize handle */
+.resizeHandle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px; /* Visual width of the handle */
+  cursor: col-resize; /* Cursor indicates resizable column */
+  background-color: rgba(0, 0, 0, 0.1); /* Subtle visual indicator */
+  /* This prevents the handle from appearing if it's the very edge of the table */
+  z-index: 1;
+  /* Make it slightly wider for easier grabbing on hover */
+  transform: translateX(50%); /* Half of its width to sit on the border */
+}
+
+.resizeHandle:hover {
+  background-color: rgba(0, 0, 0, 0.3); /* Darken on hover */
+}
+
+/* Optional: Add active state for handle during drag */
+.resizeHandle:active {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* This is a global style to prevent text selection during drag, handled in JS */
+/* body.resizing-column {
+  user-select: none;
+  cursor: col-resize;
+} */
